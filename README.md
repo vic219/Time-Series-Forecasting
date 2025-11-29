@@ -47,7 +47,8 @@ This project is designed to be **Google Colab–friendly** and also runnable loc
 │   └── Time_Series_Forecasting_Report.pdf
 ├── requirements.txt
 └── README.md
-3. Dataset (Not Included in Repo)
+
+**## 3. Dataset (Not Included in Repo)**
 
 The project uses a publicly available daily climate time series dataset for Delhi (around 2013–2017).
 It typically includes columns such as:
@@ -79,8 +80,8 @@ data/raw/DailyDelhiClimate.csv
 
 If the file name is different, update the path in the notebook accordingly.
 
-3.2 Option: Download via kagglehub in the Notebook
-
+**## 3.2 Option: Download via kagglehub in the Notebook
+**
 If you have a Kaggle API token configured, you can download the dataset programmatically.
 Example pattern inside the notebook:
 
@@ -102,8 +103,8 @@ shutil.copyfile(
 
 Adjust filenames if needed based on the dataset contents.
 
-4. Installation & Environment
-
+**## 4. Installation & Environment
+**
 It is recommended to use a virtual environment.
 
 4.1 Create and Activate Virtual Environment (Local)
@@ -116,7 +117,7 @@ python -m venv .venv
 # macOS / Linux:
 source .venv/bin/activate
 
-4.2 Install Dependencies
+## 4.2 Install Dependencies
 
 Install all required libraries with:
 
@@ -141,8 +142,8 @@ kagglehub (for dataset download, optional)
 
 jupyter, notebook, ipykernel
 
-5. How to Run the Notebook
-5.1 Run in Google Colab
+**## 5. How to Run the Notebook
+** 5.1 Run in Google Colab
 
 Upload this repository (or clone it into your Google Drive).
 
@@ -185,7 +186,7 @@ Open notebooks/Time_Series_Forecasting.ipynb.
 
 Ensure data/raw/DailyDelhiClimate.csv exists, then run the notebook.
 
-6. Modeling Details
+## 6. Modeling Details
 6.1 Preprocessing & EDA
 
 Typical preprocessing steps in the notebook:
@@ -234,7 +235,7 @@ Define and train an LSTM-based neural network (with optional dropout & early sto
 
 Invert scaling to get predictions back in original temperature units.
 
-7. Evaluation & Metrics
+## 7. Evaluation & Metrics
 
 All models are evaluated on a held-out test period using:
 
@@ -246,7 +247,7 @@ MAPE – Mean Absolute Percentage Error
 
 Metrics for each model are stored in an output CSV (e.g. output/metrics_summary.csv), and also printed in the notebook with comparison plots.
 
-8. Plots & Outputs
+## 8. Plots & Outputs
 
 The notebook saves key results as:
 
@@ -262,7 +263,7 @@ Aggregated metrics CSV → output/metrics_summary.csv
 
 You can commit the plots/ and output/ folders (excluding very large files) to show results on GitHub.
 
-9. Report
+## 9. Report
 
 A detailed written summary of the modeling process and results is provided in:
 
@@ -283,7 +284,7 @@ Visual analysis and discussion
 
 Conclusion and potential improvements
 
-10. License & Acknowledgements
+## 10. License & Acknowledgements
 
 The original climate dataset is provided by the dataset author(s) on Kaggle.
 Please check the dataset license on Kaggle before using it for anything beyond educational or personal use.
