@@ -1,4 +1,4 @@
-````markdown
+
 # Time Series Forecasting – Daily Delhi Temperature (ARIMA, Prophet, LSTM)
 
 This repository contains a complete time series forecasting project on **daily mean temperature in Delhi**.  
