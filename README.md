@@ -1,3 +1,4 @@
+````markdown
 # Time Series Forecasting – Daily Delhi Temperature (ARIMA, Prophet, LSTM)
 
 This repository contains a complete time series forecasting project on **daily mean temperature in Delhi**.  
@@ -19,9 +20,9 @@ The goal of this project is to:
 - Load and preprocess a real-world time series dataset (daily climate data for Delhi)
 - Perform exploratory data analysis (EDA)
 - Train and compare three forecasting models:
-  - ARIMA
-  - Prophet
-  - LSTM
+  - ARIMA  
+  - Prophet  
+  - LSTM  
 - Evaluate models using:
   - **MAE** – Mean Absolute Error  
   - **RMSE** – Root Mean Squared Error  
@@ -40,51 +41,53 @@ This project is designed to be **Google Colab–friendly** and also runnable loc
 │   └── Time_Series_Forecasting.ipynb
 ├── data/
 │   ├── raw/          # Place the original CSV from Kaggle here (NOT tracked in repo)
-│   └── processed/    # Optional: processed train/test CSVs
+│   └── processed/    # Optional processed train/test CSVs
 ├── plots/            # Saved EDA and forecast plots (PNG)
 ├── output/           # Forecast CSVs and metrics (MAE, RMSE, MAPE)
 ├── report/
 │   └── Time_Series_Forecasting_Report.pdf
 ├── requirements.txt
 └── README.md
+````
 
-**## 3. Dataset (Not Included in Repo)**
+---
 
-The project uses a publicly available daily climate time series dataset for Delhi (around 2013–2017).
-It typically includes columns such as:
+## 3. Dataset (Not Included in Repo)
 
-date – date of observation
+The project uses a **publicly available daily climate time series dataset for Delhi (2013–2017)**.
 
-meantemp – daily mean temperature (°C)
+Typical columns include:
 
-humidity, wind_speed, meanpressure (optional features)
+* `date` – date of observation
+* `meantemp` – daily mean temperature (°C)
+* `humidity`
+* `wind_speed`
+* `meanpressure`
 
-3.1 How to Download the Dataset (Kaggle – Manual)
+### 3.1 How to Download the Dataset (Manual Kaggle Download)
 
-Go to Kaggle and search for:
+1. Go to Kaggle and search for:
+   **“Daily Delhi Climate Time Series Data”**
+2. Download the dataset.
+3. Create the folder:
 
-Daily Delhi Climate Time Series Data
+```text
+data/raw/
+```
 
-Download the CSV file from the dataset page.
+4. Place the CSV file into:
 
-Create the following folders in your local repo:
-
-data/
-  raw/
-
-
-Place the downloaded CSV into:
-
+```text
 data/raw/DailyDelhiClimate.csv
+```
 
+5. If the file name is different, update the notebook accordingly.
 
-If the file name is different, update the path in the notebook accordingly.
+---
 
-**## 3.2 Option: Download via kagglehub in the Notebook
-**
-If you have a Kaggle API token configured, you can download the dataset programmatically.
-Example pattern inside the notebook:
+### 3.2 Optional: Download via `kagglehub` Inside the Notebook
 
+```python
 import kagglehub
 import os
 import shutil
@@ -93,200 +96,178 @@ import shutil
 path = kagglehub.dataset_download("sumanthvrao/daily-climate-time-series-data")
 print("Downloaded to:", path)
 
-# Copy one of the CSVs into data/raw/
+# Copy one CSV file into data/raw/
 os.makedirs("data/raw", exist_ok=True)
 shutil.copyfile(
     os.path.join(path, "DailyDelhiClimateTrain.csv"),
     "data/raw/DailyDelhiClimate.csv"
 )
+```
 
+---
 
-Adjust filenames if needed based on the dataset contents.
+## 4. Installation & Environment
 
-**## 4. Installation & Environment
-**
 It is recommended to use a virtual environment.
 
-4.1 Create and Activate Virtual Environment (Local)
-# Create venv (example for Python 3)
+### 4.1 Create and Activate Virtual Environment
+
+```bash
+# Create venv
 python -m venv .venv
 
 # Activate
 # Windows:
 .venv\Scripts\activate
-# macOS / Linux:
+# macOS/Linux:
 source .venv/bin/activate
+```
 
-## 4.2 Install Dependencies
+### 4.2 Install Dependencies
 
-Install all required libraries with:
-
+```bash
 pip install -r requirements.txt
-
+```
 
 Key packages include:
 
-pandas, numpy
+* pandas, numpy
+* scikit-learn
+* statsmodels
+* prophet + cmdstanpy
+* tensorflow
+* matplotlib, seaborn
+* kagglehub (optional for dataset download)
+* jupyter, notebook, ipykernel
 
-scikit-learn
+---
 
-statsmodels
+## 5. How to Run the Notebook
 
-prophet and cmdstanpy
+### 5.1 Run in Google Colab
 
-tensorflow
+1. Upload/clone the repository into your Drive.
+2. Open:
 
-matplotlib, seaborn
+```
+notebooks/Time_Series_Forecasting.ipynb
+```
 
-kagglehub (for dataset download, optional)
+3. Ensure the dataset exists at:
 
-jupyter, notebook, ipykernel
+```
+data/raw/DailyDelhiClimate.csv
+```
 
-**## 5. How to Run the Notebook
-** 5.1 Run in Google Colab
+You may upload it manually OR use the KaggleHub code cell.
 
-Upload this repository (or clone it into your Google Drive).
+4. Run all cells in order:
 
-Open notebooks/Time_Series_Forecasting.ipynb in Google Colab.
+* Data loading & preprocessing
+* EDA
+* Model training (ARIMA, Prophet, LSTM)
+* Forecasting & evaluation
+* Plot saving & output CSV generation
 
-Make sure your dataset CSV is available at data/raw/DailyDelhiClimate.csv:
+Generated results appear in:
 
-Either upload it manually to that path, or
+* `plots/`
+* `output/`
 
-Use the kagglehub download code cell to fetch and copy it there.
+---
 
-Run all cells from top to bottom:
+### 5.2 Run Locally with Jupyter
 
-Data loading & preprocessing
-
-EDA & visualization
-
-Model training (ARIMA, Prophet, LSTM)
-
-Forecasting & evaluation
-
-Plot saving & output CSV generation
-
-Generated files will be saved to:
-
-plots/ – visualizations (EDA, forecasts, residuals, comparisons)
-
-output/ – forecast values and metrics (.csv)
-
-5.2 Run Locally with Jupyter
-
-Create and activate a virtual environment and install the requirements.
-
-Start Jupyter:
-
+```bash
 jupyter notebook
+```
 
+Then open the notebook and ensure the dataset CSV is present before running.
 
-Open notebooks/Time_Series_Forecasting.ipynb.
-
-Ensure data/raw/DailyDelhiClimate.csv exists, then run the notebook.
+---
 
 ## 6. Modeling Details
-6.1 Preprocessing & EDA
 
-Typical preprocessing steps in the notebook:
+### 6.1 Preprocessing & EDA
 
-Convert date column to datetime and set it as index.
+* Convert date to datetime, set index
+* Resample to daily frequency
+* Handle missing values
+* Generate:
 
-Sort by date and resample to daily frequency (if necessary).
+  * Time series plots
+  * Rolling mean & std
+  * Seasonal decomposition
 
-Handle missing values (e.g. interpolation).
+### 6.2 ARIMA
 
-Generate:
+* Make data stationary (differencing)
+* Use ACF/PACF to choose p, q
+* Fit ARIMA model
+* Forecast test set
 
-Time series plot of meantemp
+### 6.3 Prophet
 
-Rolling mean and standard deviation
+* Convert data to `ds` and `y` format
+* Fit model with yearly seasonality
+* Forecast and align with test period
 
-Seasonal decomposition (trend, seasonal, residual)
+### 6.4 LSTM
 
-6.2 ARIMA Model
+* Normalize data
+* Create sliding windows
+* Build LSTM model
+* Invert normalization after prediction
 
-Make the series approximately stationary using differencing if needed.
-
-Select ARIMA orders (p, d, q) via ACF/PACF and/or information criteria.
-
-Fit the model on the training data.
-
-Forecast over the test period.
-
-6.3 Prophet Model
-
-Prepare data in Prophet’s format with columns ds (date) and y (temperature).
-
-Fit model with yearly seasonality (and optionally weekly/daily components).
-
-Generate a future dataframe for the forecast horizon.
-
-Align forecasts with the test period and evaluate.
-
-6.4 LSTM Model
-
-Scale the target variable using MinMaxScaler.
-
-Create supervised sequences using a sliding window of past observations.
-
-Define and train an LSTM-based neural network (with optional dropout & early stopping).
-
-Invert scaling to get predictions back in original temperature units.
+---
 
 ## 7. Evaluation & Metrics
 
-All models are evaluated on a held-out test period using:
+Models evaluated using:
 
-MAE – Mean Absolute Error
+* **MAE**
+* **RMSE**
+* **MAPE**
 
-RMSE – Root Mean Squared Error
+Metrics are saved in:
 
-MAPE – Mean Absolute Percentage Error
+```
+output/metrics_summary.csv
+```
 
-Metrics for each model are stored in an output CSV (e.g. output/metrics_summary.csv), and also printed in the notebook with comparison plots.
+---
 
 ## 8. Plots & Outputs
 
-The notebook saves key results as:
+Saved by the notebook:
 
-EDA plots (time series, decomposition, rolling stats) → plots/eda/
+* EDA plots → `plots/eda/`
+* Forecast vs actual plots → `plots/forecasts/`
+* Residual plots → `plots/residuals/`
+* Forecast CSVs → `output/`
+* Metrics summary → `output/metrics_summary.csv`
 
-Forecast vs actual plots for ARIMA / Prophet / LSTM → plots/forecasts/
-
-Residual plots for each model → plots/residuals/
-
-Forecast CSVs for each model → output/
-
-Aggregated metrics CSV → output/metrics_summary.csv
-
-You can commit the plots/ and output/ folders (excluding very large files) to show results on GitHub.
+---
 
 ## 9. Report
 
-A detailed written summary of the modeling process and results is provided in:
+A full project report is available in:
 
+```
 report/Time_Series_Forecasting_Report.pdf
+```
 
-
-The report includes:
-
-Problem statement and motivation
-
-Data description
-
-Methodology for each model
-
-Quantitative results (MAE, RMSE, MAPE)
-
-Visual analysis and discussion
-
-Conclusion and potential improvements
+---
 
 ## 10. License & Acknowledgements
 
-The original climate dataset is provided by the dataset author(s) on Kaggle.
-Please check the dataset license on Kaggle before using it for anything beyond educational or personal use.
+* The original dataset belongs to the Kaggle author(s).
+* This project is intended for education, learning, and portfolio use.
 
-This repository is intended for learning, experimentation, and academic portfolio purposes.
+```
+
+---
+
+### ✅ FINAL ANSWER  
+**Yes — after replacing your version with THIS corrected version, your README will be perfectly formatted, clean, and fully ready for GitHub.**
+```
